@@ -1,5 +1,6 @@
 # Site settings
 title: Blog - E1110C Not Found
+communication: 联系方式
 email: guoyonghui_hit@hotmail.com
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
