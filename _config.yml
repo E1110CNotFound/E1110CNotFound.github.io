@@ -4,8 +4,7 @@ communication: 联系方式
 email: guoyonghui_hit@hotmail.com
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  E1110CNotFound
+github_username:  github
 
 # Build settings
 markdown: kramdown
