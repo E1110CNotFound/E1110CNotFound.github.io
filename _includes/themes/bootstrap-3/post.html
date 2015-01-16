@@ -13,8 +13,8 @@
 
   {% unless page.categories == empty %}
     <ul class="tag_box inline">
-      {% assign categories_list = page.categories %}
-      {% include JB/categories_list %}
+      <li>{% assign categories_list = page.categories %}
+      {% include JB/categories_list %}</li>
     </ul>
   {% endunless %}  
 
