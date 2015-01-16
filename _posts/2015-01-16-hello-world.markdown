@@ -3,7 +3,7 @@ layout: post
 title:  "Hello World"
 author:	郭永辉
 date:   2015-01-16 11:38:00
-categories: [测试, 开发]
+categories: 测试
 ---
 Hello World
 
