@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Hello World"
+author:	Guo Yonghui
 date:   2015-01-16 11:38:00
 categories: [测试, 开发]
 ---
