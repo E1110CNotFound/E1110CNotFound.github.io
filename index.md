@@ -6,7 +6,7 @@ title: Blog Blog Blog !
 
 <ul class="posts">
   {% for post in site.posts %}
-    <li>
+    <li style="list-style-type: none">
       <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} • {% if post.categories %}{% for category in post.categories %} {{ category }}{% endfor %}{% endif %}</span>
 
       <h2>
