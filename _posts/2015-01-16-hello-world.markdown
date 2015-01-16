@@ -2,7 +2,7 @@
 layout: post
 title:  "Hello World"
 date:   2015-01-16 11:38:00
-categories: 测试
+categories: [测试, 开发]
 ---
 Hello World
 
