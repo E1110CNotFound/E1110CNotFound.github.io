@@ -1,7 +1,6 @@
 # Site settings
 title: E1110C Blog
 email: guoyonghui_hit@hotmail.com
-QQ:291300848
 description: > # this means to ignore newlines until "baseurl:"
   E1110C的个人学习博客
 baseurl: "" # the subpath of your site, e.g. /blog/
