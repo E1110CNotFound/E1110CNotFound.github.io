@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 最近更新
+title: Blog Blog Blog !
 ---
 {% include JB/setup %}
 
