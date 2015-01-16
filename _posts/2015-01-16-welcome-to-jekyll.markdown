@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Welcome to Jekyll!"
+author:	Guo Yonghui
 date:   2015-01-16 21:54:16
 categories: jekyll update
 ---
