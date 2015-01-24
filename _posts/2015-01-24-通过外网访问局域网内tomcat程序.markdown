@@ -5,7 +5,7 @@ author:	Guo Yonghui
 date:   2015-01-24 21:37:00
 categories: Tomcat
 ---
-处于同一局域网中的设备之间可以通过局域网中的IP地址来访问部署在tomcat下的web程序，而本文将介绍外网访问局域网内部署在tomcat下的web程序。
+处于同一局域网中的设备之间可以通过局域网中的IP地址来访问部署在tomcat下的web程序，而本文将介绍外网访问局域网内部部署在tomcat下的web程序。
 
 一、获取局域网内IP地址与局域网网关IP地址
 
