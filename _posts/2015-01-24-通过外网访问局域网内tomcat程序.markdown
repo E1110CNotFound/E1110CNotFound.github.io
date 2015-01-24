@@ -11,7 +11,7 @@ categories: Tomcat
 
 局域网内IP地址可以通过在命令行输入ipconfig /all获得，本文测试机局域网内IP地址为192.168.1.202，如下图
 
-![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142211145566.png)
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142211189916.png)
 
 
 局域网网关IP地址可直接通过百度 IP地址 得到，本文测试机局域网网关IP地址为223.246.66.52
