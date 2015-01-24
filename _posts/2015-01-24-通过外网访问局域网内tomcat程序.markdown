@@ -10,4 +10,4 @@ categories: Tomcat
 一、获取局域网内IP地址与局域网网关IP地址
 
 局域网内IP地址可以通过在命令行输入ipconfig /all获得，如下图
-![alt text](./pic/1.png)
+![alt text](https://github.com/E1110CNotFound/E1110CNotFound.github.io/blob/master/_pictures/%E9%80%9A%E8%BF%87%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E9%83%A8%E7%BD%B2%E5%9C%A8tomcat%E4%B8%8B%E7%9A%84web%E7%A8%8B%E5%BA%8F.png)
