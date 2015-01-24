@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  通过外网访问局域网内部署在tomcat下的web程序
+title:  通过外网访问局域网内部部署在tomcat下的web程序
 author:	Guo Yonghui
 date:   2015-01-24 21:37:00
 categories: Tomcat
