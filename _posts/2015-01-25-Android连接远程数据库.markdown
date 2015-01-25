@@ -14,6 +14,12 @@ categories: [Android,数据库,网络通信]
 
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219821351.png)
 
+在MySQL数据库中创建user数据表并添加数据：
+
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219917528.png)
+
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219917575.png)
+
 接下来，在web.xml中添加以下代码来配置struts：
 
 	<filter>
@@ -106,11 +112,11 @@ categories: [Android,数据库,网络通信]
 	    </action>
 	</package>
 
-在MySQL数据库中创建user数据表并添加数据：
+至此服务器端编写完毕，在浏览器中进行访问测试：
 
-![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219917528.png)
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937769.png)
 
-![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219917575.png)
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937856.png)
 
 
 
