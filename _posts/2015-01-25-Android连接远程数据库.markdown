@@ -15,6 +15,7 @@ categories: [Android,数据库,网络通信]
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219821351.png)
 
 接下来，在web.xml中添加以下代码来配置struts：
+
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
