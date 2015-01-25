@@ -5,11 +5,12 @@ author:	Guo Yonghui
 date:   2015-01-25 22:23:00
 categories: Android 数据库 网络通信
 ---
-<!-- lang:java-->
-	private void showLoginResult(boolean isLoginSuccess) {
-		if(isLoginSuccess) {
-			Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(this, R.string.login_fail, Toast.LENGTH_SHORT).show();
-		}
+```ruby
+private void showLoginResult(boolean isLoginSuccess) {
+	if(isLoginSuccess) {
+		Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
+	} else {
+		Toast.makeText(this, R.string.login_fail, Toast.LENGTH_SHORT).show();
 	}
+}
+```
