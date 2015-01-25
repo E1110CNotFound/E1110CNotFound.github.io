@@ -1,0 +1,141 @@
+---
+layout: post
+title:  Android连接远程数据库
+author:	Guo Yonghui
+date:   2015-01-25 22:23:00
+categories: Android 数据库 网络通信
+---
+```
+public class LoginActivity extends Activity {
+	
+	private static final String LOGIN_SUCCESS = "Login success";
+	private static final String LOGIN_FAIL = "Login fail";
+	
+	private EditText mUsernameEditText;
+	private EditText mPasswordEditText;
+	private Button mLoginButton;
+	
+	private String mUsername;
+	private String mPassword;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_login);
+
+		mUsernameEditText = (EditText)findViewById(R.id.username_edittext);
+		mPasswordEditText = (EditText)findViewById(R.id.password_edittext);
+		mLoginButton = (Button)findViewById(R.id.login_button);
+		
+		mUsernameEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				mUsername = s.toString();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
+		
+		mPasswordEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				mPassword = s.toString();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
+		
+		mLoginButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if((mUsername != null && mUsername.length() > 0) && (mPassword != null && mPassword.length() > 0)) {
+					new LoginAsyncTask().execute(mUsername, mPassword);
+				} else {
+					Toast.makeText(LoginActivity.this, R.string.input_tip, Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
+	
+	private boolean login(String username, String password) {
+		try {
+			username = URLEncoder.encode(URLEncoder.encode(username, "UTF-8"), "UTF-8");
+			URL url = new URL("http://183.164.136.125:1121/AndroidDatabaseConnectionServer/LoginAction?username=" + username + "&password=" + password);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			InputStream is = conn.getInputStream();
+			byte[] buffer = new byte[1024];
+			int bytesRead = 0;
+			
+			while((bytesRead = is.read(buffer)) != -1) {
+				bos.write(buffer, 0, bytesRead);
+			}
+
+			String jsonString = new String(bos.toByteArray());
+			JSONObject json = new JSONObject(jsonString);
+			
+			bos.flush();
+			bos.close();
+			is.close();
+			
+			if(json.getString("msg").equals(LOGIN_SUCCESS)) {
+				return true;
+			} else if(json.getString("msg").equals(LOGIN_FAIL)) {
+				return false;
+			}
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private void showLoginResult(boolean isLoginSuccess) {
+		if(isLoginSuccess) {
+			Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(this, R.string.login_fail, Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	private class LoginAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			return login(params[0], params[1]);
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			showLoginResult(result);
+		}
+	}
+
+}
+```
