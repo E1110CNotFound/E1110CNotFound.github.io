@@ -317,3 +317,7 @@ LoginActivity：
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142220010287.png)
 
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142220010153.png)
+
+[源码请戳此处][code]
+
+[code]:https://github.com/E1110CNotFound/AndroidDatabaseConnection
