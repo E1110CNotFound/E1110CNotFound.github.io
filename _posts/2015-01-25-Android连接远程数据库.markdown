@@ -117,21 +117,3 @@ categories: [Android,数据库,网络通信]
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937769.png)
 
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937856.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
