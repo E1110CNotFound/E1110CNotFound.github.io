@@ -10,9 +10,11 @@ categories: [Android,数据库,网络通信]
 
 一、服务器端：
 
-服务器端基于struts2框架进行开发，使用MySQL数据库，首先，添加必需的第三方类库：
+服务器端基于struts2框架以及MySQL数据库进行开发，首先在eclipse新建Dynamic Web Project，添加以下第三方类库到/WebContent/WEB-INF/lib中：
 
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219821351.png)
+
+接下来，
 
 
 
