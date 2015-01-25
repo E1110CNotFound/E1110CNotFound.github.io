@@ -114,6 +114,9 @@ categories: [Android,数据库,网络通信]
 
 至此服务器端编写完毕，在浏览器中进行访问测试：
 
-![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937769.png)
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219962366.png)
 
-![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219937856.png)
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142219962311.png)
+
+
+二、客户端
