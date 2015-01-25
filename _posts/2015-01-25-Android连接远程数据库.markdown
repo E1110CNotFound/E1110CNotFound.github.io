@@ -307,3 +307,13 @@ LoginActivity：
 
 	}
 
+由于使用到网络通信，因此需要在AndroidManifest.xml文件中加入以下内容：
+
+	<uses-permission
+	        android:name="android.permission.INTERNET" />
+
+至此客户端编写完毕，通过真机测试，完成Android对远程数据库的连接访问：
+
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142220010287.png)
+
+![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142220010153.png)
