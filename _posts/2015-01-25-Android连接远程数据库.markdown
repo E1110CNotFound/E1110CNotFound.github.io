@@ -25,6 +25,80 @@ categories: [Android,数据库,网络通信]
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+在src目录下添加struts.xml文件用来配置action（接下来将进行），新建一个action类——LoginAction：
+
+	package com.guoyonghui.server.action;
+
+	import java.net.URLDecoder;
+	import java.sql.Connection;
+	import java.sql.PreparedStatement;
+	import java.sql.ResultSet;
+
+	import com.guoyonghui.server.util.DBManager;
+	import com.opensymphony.xwork2.ActionSupport;
+
+	public class LoginAction extends ActionSupport {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3474286179742339817L;
+
+		private static final String LOGIN_SUCCESS = "Login success";
+		private static final String LOGIN_FAIL = "Login fail";
+		
+		private String msg;
+		private String username;
+		private String password;
+		
+		public String getMsg() {
+			return msg;
+		}
+
+		public void setMsg(String msg) {
+			this.msg = msg;
+		}
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		@Override
+		public String execute() throws Exception {
+			String sql = "select * from user where username = ? and password = ?";
+			
+			Connection conn = DBManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			setUsername(URLDecoder.decode(URLDecoder.decode(username, "UTF-8"), "UTF-8"));
+			pstmt.setString(1, getUsername());
+			pstmt.setString(2, getPassword());
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				setMsg(LOGIN_SUCCESS);
+			} else {
+				setMsg(LOGIN_FAIL);
+			}
+			DBManager.releaseConnection(conn, pstmt, rs);
+			
+			return super.execute();
+		}
+
+	}
+
+
 
 
 
