@@ -98,7 +98,13 @@ categories: [Android,数据库,网络通信]
 
 	}
 
+配置action，在本文中服务器端向客户端返回数据的格式采用json格式，因此extends为json-default，并且action的result类型为json：
 
+	<package name="default" namespace="/" extends="json-default">
+	    <action name="LoginAction" class="com.guoyonghui.server.action.LoginAction">
+	        <result type="json" />
+	    </action>
+	</package>
 
 
 
