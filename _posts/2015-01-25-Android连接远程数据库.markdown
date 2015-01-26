@@ -22,6 +22,7 @@ categories: [Android,数据库,网络通信]
 
 接下来，在web.xml中添加以下代码来配置struts：
 
+	<!-- 配置struts过滤器 -->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -41,6 +42,7 @@ categories: [Android,数据库,网络通信]
 	import java.sql.ResultSet;
 
 	import com.guoyonghui.server.util.DBManager;
+	import com.opensymphony.xwork2.Action;
 	import com.opensymphony.xwork2.ActionSupport;
 
 	public class LoginAction extends ActionSupport {
@@ -50,12 +52,12 @@ categories: [Android,数据库,网络通信]
 		 */
 		private static final long serialVersionUID = 3474286179742339817L;
 
-		private static final String LOGIN_SUCCESS = "Login success";
-		private static final String LOGIN_FAIL = "Login fail";
+		private static final String LOGIN_SUCCESS = "Login success";//登陆成功信息
+		private static final String LOGIN_FAIL = "Login fail";//登陆失败信息
 		
-		private String msg;
-		private String username;
-		private String password;
+		private String msg;//登录信息
+		private String username;//用户名
+		private String password;//密码
 		
 		public String getMsg() {
 			return msg;
@@ -93,19 +95,21 @@ categories: [Android,数据库,网络通信]
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				setMsg(LOGIN_SUCCESS);
+				setMsg(LOGIN_SUCCESS);//用户名密码匹配设置登陆信息为成功
 			} else {
-				setMsg(LOGIN_FAIL);
+				setMsg(LOGIN_FAIL);//用户名密码不匹配设置登陆信息为失败
 			}
 			DBManager.releaseConnection(conn, pstmt, rs);
 			
-			return super.execute();
+			return Action.SUCCESS;
 		}
 
 	}
 
+
 接下来配置action，由于在本文中服务器端向客户端返回数据的格式采用json格式，因此extends为json-default，并且action的result类型为json：
 
+	<!-- 配置action -->
 	<package name="default" namespace="/" extends="json-default">
 	    <action name="LoginAction" class="com.guoyonghui.server.action.LoginAction">
 	        <result type="json" />
@@ -189,9 +193,9 @@ LoginActivity：
 		private static final String LOGIN_SUCCESS = "Login success";
 		private static final String LOGIN_FAIL = "Login fail";
 		
-		private EditText mUsernameEditText;
-		private EditText mPasswordEditText;
-		private Button mLoginButton;
+		private EditText mUsernameEditText;//用户名文本框
+		private EditText mPasswordEditText;//密码文本框
+		private Button mLoginButton;//登陆按钮
 		
 		private String mUsername;
 		private String mPassword;
@@ -201,10 +205,11 @@ LoginActivity：
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_login);
 
-			mUsernameEditText = (EditText)findViewById(R.id.username_edittext);
-			mPasswordEditText = (EditText)findViewById(R.id.password_edittext);
-			mLoginButton = (Button)findViewById(R.id.login_button);
+			mUsernameEditText = (EditText)findViewById(R.id.username_edittext);//获取用户名文本框视图
+			mPasswordEditText = (EditText)findViewById(R.id.password_edittext);//获取密码文本框视图
+			mLoginButton = (Button)findViewById(R.id.login_button);//获取登陆按钮视图
 			
+			//用户名文本框设置监听器
 			mUsernameEditText.addTextChangedListener(new TextWatcher() {
 				
 				@Override
@@ -219,6 +224,7 @@ LoginActivity：
 				public void afterTextChanged(Editable s) {}
 			});
 			
+			//密码文本框设置监听器
 			mPasswordEditText.addTextChangedListener(new TextWatcher() {
 				
 				@Override
@@ -233,6 +239,7 @@ LoginActivity：
 				public void afterTextChanged(Editable s) {}
 			});
 			
+			//登陆按钮设置监听器
 			mLoginButton.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -246,11 +253,17 @@ LoginActivity：
 			});
 		}
 		
+		/**
+		 * 基于http协议进行登陆通信
+		 * @param username 用户输入的用户名
+		 * @param password 用户输入的密码
+		 * @return 登陆成功返回true否则返回false
+		 */
 		private boolean login(String username, String password) {
 			try {
 				username = URLEncoder.encode(URLEncoder.encode(username, "UTF-8"), "UTF-8");
-				URL url = new URL("http://183.164.136.125:1121/AndroidDatabaseConnectionServer/LoginAction?username=" + username + "&password=" + password);
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				URL url = new URL("http://183.164.136.125:1121/AndroidDatabaseConnectionServer/LoginAction?username=" + username + "&password=" + password);//根据用户输入的用户名和密码构造URL对象
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();//打开基于http协议的URL连接
 				
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				InputStream is = conn.getInputStream();
@@ -284,6 +297,10 @@ LoginActivity：
 			return false;
 		}
 		
+		/**
+		 * 根据登陆成功与否显示相应信息
+		 * @param isLoginSuccess 是否登陆成功
+		 */
 		private void showLoginResult(boolean isLoginSuccess) {
 			if(isLoginSuccess) {
 				Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
@@ -292,27 +309,34 @@ LoginActivity：
 			}
 		}
 		
+		/**
+		 * 登陆异步类
+		 * @author 永辉
+		 *
+		 */
 		private class LoginAsyncTask extends AsyncTask<String, Void, Boolean> {
 
 			@Override
 			protected Boolean doInBackground(String... params) {
-				return login(params[0], params[1]);
+				return login(params[0], params[1]);//返回登陆结果
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				showLoginResult(result);
+				showLoginResult(result);//调用showLoginResult方法显示登陆结果
 			}
 		}
 
 	}
 
+
 由于使用到网络通信，因此需要在AndroidManifest.xml文件中加入以下内容：
 
+	<!-- 添加网络权限 -->
 	<uses-permission
 	        android:name="android.permission.INTERNET" />
 
-至此客户端编写完毕，通过真机测试，完成Android对远程数据库的连接访问：
+至此客户端编写完毕，进行测试，完成Android对远程数据库的连接访问：
 
 ![image](http://ccyak.img43.wal8.com/img43/508362_20150124224702/142220010287.png)
 
