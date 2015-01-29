@@ -156,3 +156,7 @@ synchronized方法以及非synchronized方法定义
 通过线程1和线程3可以看出当两个并发线程同时访问某对象中的synchronized时，只有一个线程可以执行该部分代码，而另一个线程只有在当前线程执行完synchronized部分时才可以执行该部分代码。
 
 通过线程1和线程4可以看出当一个线程访问某对象中的某个synchronized部分时，该线程会获得该对象的对象锁，因此其他线程都该对象中所有的synd部分的访问都会被阻塞。
+
+[源码请戳此处][code]
+
+[code]:	https://github.com/E1110CNotFound/Java_SynchronizedTest
