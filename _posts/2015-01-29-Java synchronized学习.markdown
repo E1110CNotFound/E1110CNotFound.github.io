@@ -34,6 +34,7 @@ synchronized是Java语言中的关键字，当用synchronized来修饰一个方�
 synchronized示例如下
 
 synchronized方法以及非synchronized方法定义
+
 	public class Synchronized {
 
 		/**
@@ -81,6 +82,7 @@ synchronized方法以及非synchronized方法定义
 	}
 
 多线程访问synchronized部分以及非synchronized部分
+
 	public class Main {
 
 		public static void main(String[] args) {
