@@ -36,13 +36,15 @@ synchronized示例如下
 synchronized方法以及非synchronized方法定义
 
 	public class Synchronized {
+		
+		private SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 
 		/**
 		 * 定义同步方法A
 		 */
 		public synchronized void synchronizedMethodA() {
 			for(int i = 0; i < 3; i++) {
-				System.out.println(Thread.currentThread().getName() + "\t访问同步方法A\t第" + (i + 1) + "次");
+				System.out.println(Thread.currentThread().getName() + "\t访问同步方法A\t第" + (i + 1) + "次\t" + format.format(new Date()));
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -56,7 +58,7 @@ synchronized方法以及非synchronized方法定义
 		 */
 		public synchronized void synchronizedMethodB() {
 			for(int i = 0; i < 3; i++) {
-				System.out.println(Thread.currentThread().getName() + "\t访问同步方法B\t第" + (i + 1) + "次");
+				System.out.println(Thread.currentThread().getName() + "\t访问同步方法B\t第" + (i + 1) + "次\t" + format.format(new Date()));
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -70,7 +72,7 @@ synchronized方法以及非synchronized方法定义
 		 */
 		public void unsynchronizedMethod() {
 			for(int i = 0; i < 3; i++) {
-				System.out.println(Thread.currentThread().getName() + "\t访问非同步方法\t第" + (i + 1) + "次");
+				System.out.println(Thread.currentThread().getName() + "\t访问非同步方法\t第" + (i + 1) + "次\t" + format.format(new Date()));
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -135,21 +137,22 @@ synchronized方法以及非synchronized方法定义
 
 运行结果：
 
-	线程2	访问非同步方法	第1次
-	线程1	访问同步方法A	第1次
-	线程2	访问非同步方法	第2次
-	线程1	访问同步方法A	第2次
-	线程2	访问非同步方法	第3次
-	线程1	访问同步方法A	第3次
-	线程4	访问同步方法B	第1次
-	线程4	访问同步方法B	第2次
-	线程4	访问同步方法B	第3次
-	线程3	访问同步方法A	第1次
-	线程3	访问同步方法A	第2次
-	线程3	访问同步方法A	第3次
+	线程1	访问同步方法A	第1次	22:54:47
+	线程2	访问非同步方法	第1次	22:54:47
+	线程2	访问非同步方法	第2次	22:54:48
+	线程1	访问同步方法A	第2次	22:54:48
+	线程1	访问同步方法A	第3次	22:54:49
+	线程2	访问非同步方法	第3次	22:54:49
+	线程3	访问同步方法A	第1次	22:54:50
+	线程3	访问同步方法A	第2次	22:54:51
+	线程3	访问同步方法A	第3次	22:54:52
+	线程4	访问同步方法B	第1次	22:54:53
+	线程4	访问同步方法B	第2次	22:54:54
+	线程4	访问同步方法B	第3次	22:54:55
+
 
 通过线程1和线程2可以看出在一个线程访问某对象中的synchronized部分时，其他线程对该对象中的非synchronized部分的访问并不会被阻塞。
 
-通过线程2和线程3可以看出当两个并发线程同时访问某对象中的synchronized时，只有一个线程可以执行该部分代码，而另一个线程只有在当前线程执行完synchronized部分时才可以执行该部分代码。
+通过线程1和线程3可以看出当两个并发线程同时访问某对象中的synchronized时，只有一个线程可以执行该部分代码，而另一个线程只有在当前线程执行完synchronized部分时才可以执行该部分代码。
 
-通过线程2和线程4可以看出当一个线程访问某对象中的某个synchronized部分时，该线程会获得该对象的对象锁，因此其他线程都该对象中所有的synd部分的访问都会被阻塞。
+通过线程1和线程4可以看出当一个线程访问某对象中的某个synchronized部分时，该线程会获得该对象的对象锁，因此其他线程都该对象中所有的synd部分的访问都会被阻塞。
